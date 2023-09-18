@@ -1,3 +1,8 @@
+# nginx Dockerfile
+#
+# author: noah BEAUFILS
+# date: 18:09:2023
+
 FROM	debian:buster
 
 # install && update all
@@ -16,8 +21,8 @@ RUN		openssl req -x509 -nodes \
 # set nginx config
 COPY	./conf/nginx.conf /etc/nginx/nginx.conf
 RUN		mkdir -p /var/run/nginx
-RUN		mkdir -p /var/run/nginx.pid
-RUN		mkdir -p /var/log/nginx/error.log
+RUN		touch /var/log/nginx/error.log
+RUN		touch /var/run/nginx.pid
 
 # make sure we have all permissions
 RUN		chmod 755 /var/www/html
