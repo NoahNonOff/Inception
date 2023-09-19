@@ -12,6 +12,14 @@ mariadb:
 	sudo docker build -t img_mariadb ./srcs/requirements/mariadb
 	sudo docker run img_mariadb
 
+clean:
+	# stop all running container
+	sudo docker stop `sudo docker ps -a -q`
+	# delete all stopped container
+	sudo docker rm `sudo docker ps -a -q`
+	# remove all images at once
+	sudo docker rmi `sudo docker images -q`
+
 .PHONY: prerequisite nginx
 
 #.SILENT:
