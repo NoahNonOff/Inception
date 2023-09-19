@@ -6,7 +6,7 @@ all: prerequisite nginx mariadb
 
 nginx:
 	sudo docker build -t img_nginx ./srcs/requirements/nginx
-	#[run] sudo docker run img_nginx
+#[run] sudo docker run img_nginx
 
 mariadb:
 	sudo docker build -t img_mariadb ./srcs/requirements/mariadb
@@ -14,12 +14,12 @@ mariadb:
 
 clean:
 	# stop all running container
-	sudo docker stop `sudo docker ps -a -q`
+	@sudo docker stop `sudo docker ps -a -q`
 	# delete all stopped container
-	sudo docker rm `sudo docker ps -a -q`
+	@sudo docker rm `sudo docker ps -a -q`
 	# remove all images at once
-	sudo docker rmi `sudo docker images -q`
+	@sudo docker rmi `sudo docker images -q`
 
-.PHONY: prerequisite nginx
+.PHONY: prerequisite nginx clean mariadb
 
-#.SILENT:
+.SILENT: clean

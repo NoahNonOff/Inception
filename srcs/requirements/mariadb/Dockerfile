@@ -15,8 +15,13 @@ COPY	./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 # authorize port
 EXPOSE	3306
 
+# set usefull file
 COPY ./tools/create_db.sh /usr/local/bin/
 # COPY ./conf/wordpress.sql /usr/local/bin/
-ENTRYPOINT ["create_db.sh"]
 
-CMD ["mysqld", "--bind-address=0.0.0.0"]
+# change permission
+RUN		chmod +x /usr/local/bin/create_db.sh
+
+ENTRYPOINT [ "/usr/local/bin/create_db.sh" ]
+
+CMD [ "mysqld", "--bind-address=0.0.0.0" ]
