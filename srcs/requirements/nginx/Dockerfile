@@ -6,7 +6,7 @@
 FROM	debian:buster
 
 # install && update all
-RUN		apt update; apt upgrade; apt-get update; apt-get upgrade
+RUN		apt update -y; apt upgrade -y; apt-get update -y; apt-get upgrade -y
 RUN		apt-get install nginx -y
 RUN		apt-get install curl -y
 RUN		apt-get install openssl -y
