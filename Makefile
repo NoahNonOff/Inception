@@ -5,6 +5,7 @@ prerequisite:
 	@echo ""
 	sudo apt-get update -y
 	sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+	sudo apt-get install docker-compose -y
 	@echo "______________________________________________________________________________"
 	@echo ""
 
@@ -43,3 +44,8 @@ clean:
 .PHONY: prerequisite nginx clean mariadb wordpress
 
 .SILENT: clean prerequisite
+
+# build -> "docker-compose -f ./srcs -d -build"
+# stop -> "docker-compose -f ./srcs stop"
+# supress the build -> "docker-compose ./srcs down"
+# supress all -> "docker system prune -af"
