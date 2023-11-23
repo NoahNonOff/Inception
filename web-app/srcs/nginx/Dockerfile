@@ -7,10 +7,11 @@ FROM	debian:buster
 
 # install all the dependencies
 RUN		apt update -y; apt install nginx -y
+RUN		apt install openssl -y
 
 # set all the configuration files
 COPY	./conf/index.html var/www/html/index.html
-COPY	./conf/tutorial /etc/nginx/sites-enabled/config
+COPY	./conf/nginx.conf /etc/nginx/sites-enabled/nginx.conf
 
 RUN		service nginx restart
 

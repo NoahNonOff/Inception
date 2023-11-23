@@ -5,10 +5,22 @@
 
 version=1.0
 NGINX_DIR=./srcs/nginx/
+NGINX_NAME=nginx-app
 
 all:	nginx
 
 nginx:
-	sudo docker build -t nginx-app:$(version) $(NGINX_DIR)
-	sudo docker run -d -p 81:81 nginx-app:1.0
-	firefox 127.0.0.1:80
+	# Create the docker image
+	sudo docker build -t $(NGINX_NAME):$(version) $(NGINX_DIR)
+	# Run the container
+	sudo docker run -d -p 443:443 --name nginx $(NGINX_NAME):$(version)
+	firefox https://example.ubuntu.com/
+
+clean:
+	sudo docker stop nginx && sudo docker rm nginx
+
+.PHONY: nginx
+
+.SILENT:
+
+.IGNORE: clean
