@@ -1,0 +1,2 @@
+# exclude the env file (in /srcs)
+.env

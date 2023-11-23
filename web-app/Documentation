@@ -1,0 +1,21 @@
+**Docker commands**
+
+$ docker build -t name:tag {path}
+	-> create the docker image
+$ docker build -d (detach) -p (port) host-port:container-port --name {container-name} name:tag {image}
+	-> create the container thanks to the docker image
+$ docker start {id}
+	-> stop a container
+$ docker stop {id}
+	-> start a container
+$ docker logs {id}
+	-> shows the logs of a specific container
+$ docker images
+	-> shows all docker images
+$ docker ps
+	-> show the running container ({-a} -> shows even the exited one)
+
+Configuartion file of NGINX
+
+@root is the directory where the .html file is placed
+@index is used to specify file available when visiting root directory of site.server_name
