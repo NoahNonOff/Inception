@@ -51,8 +51,6 @@ services: # differents services used
     expose:
       - "9000"
 
-# "https://docs.docker.com/compose/compose-file/compose-file-v3/"
-
   volumes:
     wordpress:
       driver: local # stock the volume locally

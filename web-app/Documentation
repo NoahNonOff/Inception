@@ -62,6 +62,24 @@ services:
 
 volumes:
 	vidly:
+
+==========================================
+	wordpress:
+		build: ./wordpress
+		ports:
+			- 3000:3000
+		environment:
+			KEY value
+
+	mariadb:
+		build: ./mariadb
+		ports:
+			- 27017:27017
+		volumes:
+			- vidly:path/to/data
+
+volumes:
+	vidly:
 ==========================================
 
 build: path to the dockerfile to build the image
@@ -81,3 +99,17 @@ docker network ls
 
 docker exec -it (interactive mode) -u root (connect as root user) {Container ID} sh
 	-> run the container in interctive mode
+
+**Create the TLS certificate**
+openssl req - PKCS#10 certificate request and certificate generating command
+	-x509 This option outputs a certificate instead of a certificate request. This is typically used to generate test certificates
+	-out {filename} This specifies the output filename to write to or standard output by default
+	-keyout {filename} This gives the filename to write any private key to that has been newly created or read from -key
+	-subj {ARG} Sets subject name for new request or supersedes the subject name when processing a certificate request.
+	Questions: -> Country name / State name / Locality name / Organization Name / Organizational Unit Name / Common Name / Email address
+
+["https://docs.docker.com/compose/compose-file/compose-file-v3/"]
+
+wordepress + php-form
+nginx + TLSv1.3 **Ok**
+.yml

@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  nginx:
+    container_name: nginx
+    volumes:
+      - wordpress:/var/www/wordpress
+    networks:
+      - inception
+    depends_on: # don't launch nginx while wordpress doesn't start
+      - wordpress
+    build:
+      context: requirements/nginx
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "443:443"
+    restart: on-failure
+
+volumes:
+  wordpress:
+    driver: local # stock the volume locally
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/nbeaufil/data/wordpress'
+  mariadb:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/nbeaufil/data/wordpress'
+
+networks:
+  inception:
+    driver: bridge # all containers will communicate in bridge
