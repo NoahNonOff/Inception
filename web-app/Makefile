@@ -15,17 +15,16 @@ prerequisite:
 	sudo apt install docker-compose; sudo apt upgrade docker-compose -y
 
 nginx:
-	# Create the docker image
 	sudo docker build -t $(NGINX_NAME):$(version) $(NGINX_DIR)
-	# cd srcs/
-	# docker-compose up --build -d
-	# Run the container
 	sudo docker run -d -p 443:443 --name nginx $(NGINX_NAME):$(version)
-	firefox 127.0.0.1:443
 
 clean:
 	sudo docker stop nginx && sudo docker rm nginx
 
+re: clean all
+
 .PHONY: nginx
 
 .SILENT:
+
+.IGNORE:

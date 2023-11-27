@@ -111,5 +111,4 @@ openssl req - PKCS#10 certificate request and certificate generating command
 ["https://docs.docker.com/compose/compose-file/compose-file-v3/"]
 
 wordepress + php-form
-nginx + TLSv1.3 **Ok**
 .yml

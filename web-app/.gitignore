@@ -1,2 +1,2 @@
-# exclude the env file (in /srcs)
+# don't push the env_file
 .env

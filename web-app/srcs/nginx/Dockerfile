@@ -14,7 +14,9 @@ RUN		apt-get install openssl -y
 COPY	./conf/index.html var/www/html/index.html
 COPY	./conf/nginx.conf /etc/nginx/nginx.conf
 
-# set nginx TLS
+# create a self-signed ssl/tls certificate
+# [ "https://sectigostore.com/page/fix-firefox-security-error/" ]
+
 RUN		mkdir -p /etc/nginx/ssl
 RUN		openssl req -x509 -nodes -out /etc/nginx/ssl/nbeaufil.crt	\
 		-keyout /etc/nginx/ssl/nbeaufil.key							\
