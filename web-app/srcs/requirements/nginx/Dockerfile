@@ -1,7 +1,7 @@
 # nginx Dockerfile
 #
 # Author: Noah BEAUFILS
-# Date: 24:11:2023
+# Date: 30:11:2023
 
 FROM	debian:buster
 
@@ -12,7 +12,7 @@ RUN		apt-get install openssl -y
 
 # set all the configuration files
 COPY	./conf/index.html var/www/html/index.html
-COPY	./conf/nginx.conf /etc/nginx/nginx.conf
+COPY	./conf/nginx.conf /etc/nginx/conf.d
 
 # create a self-signed ssl/tls certificate
 # [ "https://sectigostore.com/page/fix-firefox-security-error/" ]
@@ -26,6 +26,9 @@ RUN		mkdir -p /var/run/
 RUN		touch /var/run/nginx.pid
 RUN		touch /var/log/nginx/error.log
 RUN		service nginx restart
+
+# bind to the port 443
+EXPOSE	443
 
 # launch nginx
 CMD [ "nginx", "-g", "daemon off;" ]
